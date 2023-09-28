@@ -19,6 +19,7 @@ router.post("/getroombyid", async (req, res) => {
   } catch (error) {
     return res.status(400).json({ error: error });
   }
+  
 });
 router.post("/addroom", async (req, res) => {
   const newroom = req.body;
@@ -31,28 +32,32 @@ router.post("/addroom", async (req, res) => {
   }
 });
 
-router.post("/api/rooms/reviews/:roomId", async (req, res) => {
+router.get("/reviews/getreview/:roomId", async (req, res) => {
   
-  const { roomId } = req.params;
-  console.log(roomId);
-  const { rating, comment } = req.body;
   try {
-    const room = await Review.findById(roomId);
-
-    if (!room) {
-      return res.status(500).json({ error: "Room not found" });
+    
+    
+    const review = await Review.find({room:req.params.roomId});
+    if (!review) {
+      return res.status(404).json({ error: 'Review not found' });
     }
- 
-    const newReview = { rating, comment };
-    room.ratings.push(newReview);
-
-    room.averageRating = calculateAverageRating(room.ratings);
-
-    await room.save();
-
-    return res.json(room);
+    res.send("sucess");
+    
+    
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error('Error fetching review by ID:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+  
+});
+router.post("/reviews/addreview", async (req, res) => {
+  const newreview = req.body;
+  try {
+    const review = new Review(newreview);
+    await review.save();
+    res.send("New Review Added Successfully");
+  } catch (error) {
+    return res.status(400).json({ error: error });
   }
 });
 

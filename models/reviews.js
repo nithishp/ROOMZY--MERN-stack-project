@@ -2,20 +2,20 @@ const mongoose = require("mongoose");
 const reviewSchema = mongoose.Schema({
     roomid:{
         type : String,
-        required : true
+        // required : true
     },
     userid:{
         type : String,
-        required : true
+        // required : true
     },
     review:{
 
         type : String,
-        required : true
+        // required : true
     },
     rating:{
         type : Number,
-        required : true
+        // required : true
     },
 },
 {
@@ -23,5 +23,5 @@ const reviewSchema = mongoose.Schema({
 }
 
     )
-    const reviewmodel = mongoose.model("review",reviewSchema);
+    const reviewmodel = mongoose.model("reviews",reviewSchema);
 module.exports = reviewmodel;

@@ -29,6 +29,7 @@ const roomschema = mongoose.Schema(
       type: Number,
       //   required: true,
     },
+    ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'reviews' }],
     imageurls: [],
     currentbookings: [],
     
