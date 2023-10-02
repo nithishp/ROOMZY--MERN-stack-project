@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const reviewController = require('../Controllers/ReviewController');
+// const express = require('express');
+// const router = express.Router();
+// const reviewController = require('../Controllers/ReviewController');
 
-// Get all reviews
-router.get('/', reviewController.getAllReviews);
+// // Get all reviews
+// router.get('/', reviewController.getAllReviews);
 
-// Get review by id
-router.get('/:reviewId', reviewController.getReviewById);
+// // Get review by id
+// router.get('/:reviewId', reviewController.getReviewById);
 
-module.exports = router;
+// module.exports = router;

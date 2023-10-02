@@ -42,4 +42,12 @@ router.get("/getallusers", async (req, res) => {
     return res.status(400).json({ error });
   }
 });
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    res.send(user);
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
 module.exports = router;

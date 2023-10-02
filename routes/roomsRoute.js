@@ -32,41 +32,41 @@ router.post("/addroom", async (req, res) => {
   }
 });
 
-router.get("/reviews/getreview/:roomId", async (req, res) => {
+// router.get("/reviews/getreview/:roomId", async (req, res) => {
   
-  try {
+//   try {
     
     
-    const review = await Review.find({room:req.params.roomId});
-    if (!review) {
-      return res.status(404).json({ error: 'Review not found' });
-    }
-    res.send("sucess");
+//     const review = await Review.find({room:req.params.roomId});
+//     if (!review) {
+//       return res.status(404).json({ error: 'Review not found' });
+//     }
+//     res.send("sucess");
     
     
-  } catch (error) {
-    console.error('Error fetching review by ID:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+//   } catch (error) {
+//     console.error('Error fetching review by ID:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
   
-});
-router.post("/reviews/addreview", async (req, res) => {
-  const newreview = req.body;
-  try {
-    const review = new Review(newreview);
-    await review.save();
-    res.send("New Review Added Successfully");
-  } catch (error) {
-    return res.status(400).json({ error: error });
-  }
-});
+// });
+// router.post("/reviews/addreview", async (req, res) => {
+//   const newreview = req.body;
+//   try {
+//     const review = new Review(newreview);
+//     await review.save();
+//     res.send("New Review Added Successfully");
+//   } catch (error) {
+//     return res.status(400).json({ error: error });
+//   }
+// });
 
 
 
-function calculateAverageRating(ratings) {
-  if (ratings.length === 0) return 0;
-  const totalRating = ratings.reduce((sum, review) => sum + review.rating, 0);
-  return totalRating / ratings.length;
-}
+// function calculateAverageRating(ratings) {
+//   if (ratings.length === 0) return 0;
+//   const totalRating = ratings.reduce((sum, review) => sum + review.rating, 0);
+//   return totalRating / ratings.length;
+// }
 
 module.exports = router;
